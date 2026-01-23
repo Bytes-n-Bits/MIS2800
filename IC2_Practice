@@ -1,0 +1,136 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNDZYf7ZWxUJQpmTZZBjiYa",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Bytes-n-Bits/MIS2800/blob/main/IC2_Practice\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "id": "nKuD7yuTEQ_3"
+      },
+      "outputs": [],
+      "source": [
+        "import sqlite3\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#this creates the \"OhioFootball.db\" file in your Colab file.  This is a temporary file and will be deleted when you close the file\n",
+        "conn=sqlite3.connect(\"OhioFootball.db\")"
+      ],
+      "metadata": {
+        "id": "8Rw8RfGEETBf"
+      },
+      "execution_count": 2,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Defning the Structure of the OhioFootball Database"
+      ],
+      "metadata": {
+        "id": "3fYnAav3EsaU"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#define the structure of the Ohio football teams\n",
+        "conn.execute('''\n",
+        "CREATE TABLE AFC_North1 (\n",
+        "  team_name TEXT PRIMARY KEY,\n",
+        "  city TEXT,\n",
+        "  wins INTEGER,\n",
+        "  losses INTEGER,\n",
+        "  points_per_game REAL\n",
+        "  ) STRICT;\n",
+        "'''\n",
+        ")\n",
+        "print (\"AFC_North1 table created\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "WjC3uVJCE1qa",
+        "outputId": "e19a4ed8-625e-4738-bfe9-baefc72a5a15"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "AFC_North1 table created\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Adding Team Stats"
+      ],
+      "metadata": {
+        "id": "miYHu3bcFuAW"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Adding team statistics\n",
+        "conn.execute(\"\"\"\n",
+        "INSERT INTO AFC_North1 (team_name, city, wins, losses, points_per_game)\n",
+        "  VALUES('Browns', 'Cleveland', 11, 6, 23.3),\n",
+        "        ('Bengals', 'Cincinnati', 9, 8, 21.5);\n",
+        "        \"\"\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Y2ceBkYKFwjg",
+        "outputId": "0120006f-b33c-423c-c37b-4c7e2eea7eff"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "<sqlite3.Cursor at 0x7e1288ff6dc0>"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 8
+        }
+      ]
+    }
+  ]
+}
